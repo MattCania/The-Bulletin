@@ -1,0 +1,21 @@
+:root{
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+
+	color-scheme: light dark;
+	--background-color: #000206;
+	--primary: #060d1b;
+	--secondary: #1a212f;
+	--tertiary: #434445;
+	--white: #FFFFFF;
+	--black: #000000;
+
+}
+
+body{
+	background-color: var(--background-color);
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
