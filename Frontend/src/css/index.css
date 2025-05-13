@@ -1,0 +1,26 @@
+.section_1{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: auto;
+	width: 100%;
+}
+
+.section_form{
+	display: flex;
+	flex-direction: column;
+}
+
+.section_form h1{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	text-align: center;
+}
+
+.section_form input{
+	display: flex;
+	padding-left: 8px;
+	outline: none;
+}
