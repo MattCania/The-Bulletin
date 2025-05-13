@@ -19,3 +19,20 @@ body{
 	flex-direction: column;
 	padding: 0;
 }
+
+.input_default{
+	display: flex;
+	width: auto;
+	background-color: var(--tertiary);
+	outline: none;
+	border: none;
+	margin: 1rem;
+	border-radius: .5rem;
+	padding: 4px;
+	transition: all 200ms;
+}
+
+.input_default:hover{ 
+	cursor: pointer;
+	background-color: var(--secondary);
+}
