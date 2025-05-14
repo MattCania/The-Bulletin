@@ -1,9 +1,9 @@
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 import db from '../database.js'
-import '../models/userAccounts.js';
-import '../models/userProfiles.js';
-import '../models/blogPosts.js';
+import  '../models/userAccounts.js';
+import  '../models/userProfiles.js';
+import  '../models/blogPosts.js';
 
 dotenv.config();
 
@@ -30,3 +30,4 @@ async function createDatabaseIfNotExists () {
   await connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`);
   await connection.end();
 };
+

@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="./css/register.css">
 	<link rel="stylesheet" href="./css/navigation.css">
 	<link rel="stylesheet" href="./css/main.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./js/register.js"></script>
 </head>
 <body>
 	
@@ -42,5 +44,38 @@
 	</nav>
 
 
+	<section
+		class="section_1"
+	>
+		<form
+			class="section_form"
+			action=""
+		>
+			<h1>Register</h1>
+
+			<label for="firstname">First Name:</label>
+			<input type="text" name="firstname" id="firstname">
+
+			<label for="middlename">Middle Name:</label>
+			<input type="text" name="middlename" id="middlename">
+			
+			<label for="lastname">Last Name:</label>
+			<input type="text" name="lastname" id="lastname">
+
+			<label for="birthday">Birthday:</label>
+			<input type="date" name="birthday" id="birthday">
+
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email">
+
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password">
+
+			<label for="confirmPassword">Confirm Password:</label>
+			<input type="password" name="confirmPassword" id="confirmPassword">
+
+			<input class="input_default" id="submit_btn" type="submit" value="Register">
+		</form>
+	</section>
 </body>
 </html>

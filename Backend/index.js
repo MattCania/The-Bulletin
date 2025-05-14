@@ -13,6 +13,9 @@ app.use(hpp())
 app.use(helmet())
 app.use(cors());
 
+import accountRoute from './routes/accountRoutes.js'
+app.use('/api', accountRoute)
+
 initializeApp()
 
 app.listen(5000, ()=> {

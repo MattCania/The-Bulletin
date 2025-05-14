@@ -1,21 +1,13 @@
 import express from 'express'
 
+import accountHandler from '../controllers/accountController.js'
+
 const router = express.Router()
 
-post('/login', (req, res) => {
+router.post('/register', accountHandler.registerAccount)
+router.post('/login', accountHandler.loginAccount)
 
-	const {email, password} = req.body;
-
-	if (!email) {
-		console.log("Please enter a valid Email")
-		res.json({message: "Please enter a valid email"})
-	}
-	if (!password){
-		console.log("Please enter a valid password")
-		res.json({message: "Please enter a valid password"})
-	}
-  res.json({ message: "Successful Log In" });
-})
+router.post
 
 export default router
 
