@@ -4,11 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>The Bulletin</title>
-	<link rel="stylesheet" href="./css/about.css">
+	<link rel="stylesheet" href="./css/login.css">
 	<link rel="stylesheet" href="./css/navigation.css">
 	<link rel="stylesheet" href="./css/main.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body
+	class="body"
+>
+	
 	<nav class="nav">
 		<div class="nav_div_left">
 
@@ -16,7 +20,7 @@
 				The Bulletin
 			</a>
 
-			<a class="nav_link_active" href="about.html">
+			<a class="nav_link" href="about.html">
 				About us
 			</a>
 
@@ -30,8 +34,8 @@
 		</div>
 
 		<div class="nav_div_right">
-
-			<a class="nav_link_filled" href="login.html">
+			
+			<a class="nav_link_filled_active" href="login.html">
 				Sign In
 			</a>
 			<a class="nav_link_outlined" href="register.html">
@@ -39,5 +43,26 @@
 			</a>
 		</div>
 	</nav>
+
+	<section
+		class="section_1"
+	>
+		<form
+			class="section_form"
+			action=""
+		>
+			<h1>Login</h1>
+
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email">
+
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password">
+
+			<input class="input_default" id="submit_btn" type="submit" value="Log In">
+		</form>
+	</section>
+
+	<script src="./js/login.js"></script>
 </body>
 </html>
