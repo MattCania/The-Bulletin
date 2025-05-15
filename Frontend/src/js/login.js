@@ -20,13 +20,13 @@ $(document).ready(function () {
     };
 
     $.ajax({
-      url: "http://localhost:5000/login",
+      url: "http://localhost:5000/api/login",
       method: "POST",
 	  contentType: 'application/json',
       data: JSON.stringify(formData),
       success: function (response) {
         console.log("User created:", response);
-		$(location).attr('href', 'home.html');
+		     $(location).attr('href', 'home.html');
       },
       error: function (xhr, status, error) {
         console.error("Error:", error);

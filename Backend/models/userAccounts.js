@@ -1,36 +1,36 @@
 import db from "../database.js";
-import { DataTypes, INTEGER, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
 class UserAccounts extends Model {
-
-	static associate(models){
-
-	}
+  static associate(models) {
+    UserAccounts.hasOne(models.UserProfiles, { foreignKey: "accountId" });
+    UserAccounts.hasMany(models.BlogPosts, { foreignKey: "accountId" });
+  }
 }
 
 UserAccounts.init(
   {
-	accountId: {
-		type: DataTypes.INTEGER,
-		primaryKey: true,
-		autoIncrement: true,
-		allowNull: false,
-	},
-	email: {
-		type: DataTypes.STRING,
-		isEmail: true,
-		allowNull: false
-	},
-	hashedPassword: {
-		type: DataTypes.STRING,
-		allowNull: false
-	}
+    accountId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      isEmail: true,
+      allowNull: false,
+    },
+    hashedPassword: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
-    sequelize: db, 
+    sequelize: db,
     modelName: "UserAccounts",
-	createdAt: true,
-	updatedAt: true
+    createdAt: true,
+    updatedAt: true,
   }
 );
 

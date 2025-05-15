@@ -3,6 +3,7 @@ import UserAccounts from "../models/userAccounts.js";
 import UserProfiles from "../models/userProfiles.js";
 
 async function registerAccount(req, res) {
+  console.log("Signing Up")
   const { firstname, middlename, lastname, birthday, email, password } =
     req.body;
 
@@ -41,14 +42,15 @@ async function registerAccount(req, res) {
 
 	res.json({message: "Successful Account Creation"})
   } catch (error) {
-    res.json({ message: error.message });
+    res.status(400).json({error: error.message})
   }
 }
 
 async function loginAccount(req, res) {
+  console.log("Logging In")
   const { email, password } = req.body;
 
-  if (!email) {
+  if (!email || !email.includes("@")) {
     console.log("Please enter a valid Email");
     res.json({ message: "Please enter a valid email" });
   }
@@ -56,6 +58,32 @@ async function loginAccount(req, res) {
     console.log("Please enter a valid password");
     res.json({ message: "Please enter a valid password" });
   }
+
+  try {
+    const emailResult = await UserAccounts.findOne({where: {email}})
+
+    if (!emailResult) {
+      throw new Error("Account Not Found! Please use an existing email")
+      
+    }
+
+    const emailPassword = emailResult.hashedPassword
+
+    const isMatch = await bcrypt.compare(password, emailPassword)
+
+    if(!isMatch) {
+      throw new Error("Incorrect Password! Try again!")
+    }
+
+    res.status(200).json({message: "Successful Log In!"})
+    console.log("Log In Success!")
+
+
+  } catch (error) {
+    console.log("Log In Unsuccessful! ", error)
+    res.status(400).json({error: error.message})
+  }
+
 }
 
 export default {
