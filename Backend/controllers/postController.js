@@ -1,5 +1,25 @@
 import BlogPosts from '../models/blogPosts.js'
 
+async function fetchPosts (req, res) {
+	console.log("Fetching Posts")
+	
+	try {
+		
+		const posts = await BlogPosts.findAll()
+
+		if (!posts) {
+			throw new Error("Fetching Error!")
+		}
+
+		console.log("Fetching Successful")
+		res.status(200).json({message: "Successfully Fetched all Posts", data: posts})
+
+	} catch (error) {
+		console.log("Fetching Unsuccessful")
+		res.status(500).json({error: error.message})
+	}
+}
+
 async function postContent (req, res) {
 	console.log("Uploading Content")
 	const {title, content, userId, username} = req.body;
@@ -28,5 +48,6 @@ async function postContent (req, res) {
 }
 
 export default {
-	postContent
+	postContent,
+	fetchPosts
 }
