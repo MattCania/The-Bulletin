@@ -47,7 +47,19 @@ async function postContent (req, res) {
 	}
 }
 
+async function likePost(req, res) {
+	const { blogId, userId } = req.body;
+
+	try {
+		
+	} catch (error) {
+		console.log("Liking Unsuccessful")
+		res.status(500).json({error: error.message})
+	}
+}
+
 export default {
 	postContent,
-	fetchPosts
+	fetchPosts,
+	likePost
 }

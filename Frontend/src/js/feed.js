@@ -31,7 +31,7 @@ $(document).ready(function () {
 				class="post_bottom_bar"
 			>
 				<button
-					onclick="likePost()"
+					onclick="likePost(${post.blogId})"
 				>
 					${post.likes} likes
 				</button>
@@ -51,6 +51,6 @@ $(document).ready(function () {
   });
 });
 
-function likePost() {
-	
+function likePost(blogId) {
+	alert(blogId)
 }
