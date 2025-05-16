@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="./css/home.css">
 	<link rel="stylesheet" href="./css/navigation.css">
 	<link rel="stylesheet" href="./css/main.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./js/home.js"></script>
 </head>
 
 <body>
@@ -46,8 +48,22 @@
 	<section
 		class="section_home"
 	>
+		<form 
+			class="blog_form"
+			action=""
+		>
+			<label for="title">Title:</label>
+			<input type="text" name="title" id="title">
 		
+			<label for="content">Content:</label>
+			<textarea name="content" id="content"></textarea>
+		
+			<label for="fileContent" class="custom-file-upload">Image/Video:
+				<input type="file" name="fileContent" id="fileContent">
+			</label>
 
+			<input class="input_default" id="upload_btn" type="submit" value="Upload">
+		</form>
 	</section>
 </body>
 

@@ -25,8 +25,9 @@ $(document).ready(function () {
 	  contentType: 'application/json',
       data: JSON.stringify(formData),
       success: function (response) {
-        console.log("User created:", response);
-		     $(location).attr('href', 'home.html');
+        console.log("User created:", response.token);
+        localStorage.setItem("token", JSON.stringify(response.token));
+		     $(location).attr('href', 'home.html'); 
       },
       error: function (xhr, status, error) {
         console.error("Error:", error);

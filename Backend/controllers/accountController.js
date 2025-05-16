@@ -64,18 +64,31 @@ async function loginAccount(req, res) {
 
     if (!emailResult) {
       throw new Error("Account Not Found! Please use an existing email")
-      
+    }
+    
+    const userId = emailResult.accountId
+   
+    const profileResult = await UserProfiles.findOne({where: {accountId: userId}})
+
+    if (!profileResult) {
+      throw new Error("Account Profile Not Found! Please Contact Our Administrator Services to fix this issue!")
     }
 
+    const username = profileResult.firstName + " " + profileResult.lastName
     const emailPassword = emailResult.hashedPassword
-
+    
     const isMatch = await bcrypt.compare(password, emailPassword)
 
     if(!isMatch) {
       throw new Error("Incorrect Password! Try again!")
     }
 
-    res.status(200).json({message: "Successful Log In!"})
+    const token = {
+      userId: userId,
+      name: username,
+    }
+
+    res.status(200).json({message: "Successful Log In!", token: token})
     console.log("Log In Success!")
 
 

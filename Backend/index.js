@@ -16,6 +16,9 @@ app.use(cors());
 import accountRoute from './routes/accountRoutes.js'
 app.use('/api', accountRoute)
 
+import contentRoute from './routes/postRoutes.js'
+app.use('/api', contentRoute)
+
 initializeApp()
 
 app.listen(5000, ()=> {
