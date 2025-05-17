@@ -4,7 +4,9 @@ import { DataTypes, Model } from "sequelize";
 class BlogPosts extends Model {
 
 	static associate(models){
-		
+		this.belongsTo(models.UserAccounts, {foreignKey: "accountId"})
+		this.hasMany(models.BlogLikes, {foreignKey: "blogId"})
+		this.hasMany(models.BlogComments, {foreignKey: "blogId"})
 	}
 }
 

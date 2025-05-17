@@ -5,6 +5,8 @@ class UserAccounts extends Model {
   static associate(models) {
     UserAccounts.hasOne(models.UserProfiles, { foreignKey: "accountId" });
     UserAccounts.hasMany(models.BlogPosts, { foreignKey: "accountId" });
+    UserAccounts.hasMany(models.BlogLikes, { foreignKey: "accountId" });
+    UserAccounts.hasMany(models.BlogComments, { foreignKey: "accountId" });
   }
 }
 
