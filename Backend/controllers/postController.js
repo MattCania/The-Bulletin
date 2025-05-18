@@ -49,6 +49,7 @@ async function postContent(req, res) {
 
 async function getLikes(req, res) {
 	
+  console.log("Getting Likes")
 	const {blogId} = req.body;
 
 	try {
@@ -56,13 +57,14 @@ async function getLikes(req, res) {
 		const likesResult = await BlogLikes.findAll({where: {blogId}})
 
 		if (!likesResult){
-			throw new Error("Fetching Posts Error")
+			throw new Error("Fetching Likes Error")
 		}
+    console.log("Likes: ", likesResult.length)
 
-		res.status(200).json({message: "Successfully Fetched Posts"})
+		res.status(200).json({message: "Successfully Fetched Likes", data: likesResult})
 
 	} catch (error) {
-		console.log("Failed Getting Posts")
+		console.log("Failed Getting Likes")
 		res.status(500).json({message: error.message})
 	}
 
@@ -71,19 +73,23 @@ async function getLikes(req, res) {
 async function likePost(req, res) {
   const { blogId, userId } = req.body;
 
+  console.log(`Blog ID: ${blogId}\nUser ID: ${userId}` )
+
   try {
+    console.log("Liking Process Start")
     const isLiked = await BlogLikes.findOne({
       where: {
         blogId,
-        userId,
+        accountId: userId,
       },
     });
 
-    if (!isLiked) {
+    console.log("Checking Likes: ", isLiked)
+    if (isLiked) {
       const unLikeResult = await BlogLikes.destroy({
         where: {
           blogId,
-          userId,
+          accountId: userId,
         },
       });
 
@@ -95,7 +101,7 @@ async function likePost(req, res) {
     } else {
       const likeResult = await BlogLikes.create({
         blogId,
-        userId,
+        accountId: userId,
       });
 
       if (!likeResult) {
@@ -105,7 +111,7 @@ async function likePost(req, res) {
       res.status(200).json({ message: "Successfully Liked a Post" });
     }
   } catch (error) {
-    console.log("Liking Unsuccessful");
+    console.log("Liking Unsuccessful: ", error);
     res.status(500).json({ error: error.message });
   }
 }

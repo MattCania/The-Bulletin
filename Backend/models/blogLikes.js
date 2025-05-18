@@ -12,7 +12,6 @@ BlogLikes.init(
   {
 	blogId: {
 		type: DataTypes.INTEGER,
-		primaryKey: true,
 		allowNull: false,
 	},
 	accountId: {
