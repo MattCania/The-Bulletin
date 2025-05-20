@@ -1,4 +1,10 @@
 $(document).ready(function () {
+  fetchPosts();
+  setInterval(fetchPosts, 5000);
+});
+
+function fetchPosts() {
+  $(".section_feed").empty();
   $.ajax({
     url: "http://localhost:5000/api/fetch_posts",
     method: "GET",
@@ -6,16 +12,15 @@ $(document).ready(function () {
     success: (response) => {
       console.log(response);
       response.data.forEach((post) => {
-		
-		const postId = post.blogId
+        const postId = post.blogId;
 
-		console.log("Post ID", postId)
-		
-		$.ajax({
+        console.log("Post ID", postId);
+
+        $.ajax({
           url: "http://localhost:5000/api/get_likes",
           method: "POST",
           contentType: "application/json",
-		  data:  JSON.stringify({blogId: postId}),
+          data: JSON.stringify({ blogId: postId }),
           success: (response) => {
             console.log("Likes Response: ", response);
 
@@ -44,38 +49,33 @@ $(document).ready(function () {
 				`;
             $(".section_feed").append(postComponent);
           },
-          error: (xhr, error, status) => {
-
-		  },
+          error: (xhr, error, status) => {},
         });
       });
     },
     error: () => {},
   });
-});
+}
 
 function likePost(blogId) {
-	
-	const user = JSON.parse(localStorage.getItem("token"))
+  const user = JSON.parse(localStorage.getItem("token"));
 
-	const formData = {
-		blogId: blogId,
-		userId: user.userId
-	}
+  const formData = {
+    blogId: blogId,
+    userId: user.userId,
+  };
 
-	console.log(formData)
+  console.log(formData);
 
-	$.ajax({
-		url: "http://localhost:5000/api/like_post",
-		method: "POST",
-		contentType: "application/json",
-		data: JSON.stringify(formData),
-		success: (response) => {
-			console.log(response)
-		},
-		error: (xhr, error, status) =>{
-
-		}
-	})
-
+  $.ajax({
+    url: "http://localhost:5000/api/like_post",
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(formData),
+    success: (response) => {
+      console.log(response);
+      fetchPosts();
+    },
+    error: (xhr, error, status) => {},
+  });
 }
